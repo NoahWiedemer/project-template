@@ -1,101 +1,285 @@
-import Image from "next/image";
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import Footer from "@/components/Footer";
+import { Code, Smartphone, Palette } from 'lucide-react';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  });
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8 }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-neutral-900 to-black text-white">
+      {/* Hero Section with Parallax */}
+      <motion.header 
+        ref={targetRef}
+        style={{ opacity, scale }}
+        className="relative h-screen flex items-center justify-center overflow-hidden"
+      >
+        <div className="absolute inset-0">
+          <motion.div 
+            animate={{ scale: 1.2 }}
+            transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
+            className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80')] bg-cover bg-center opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <motion.div 
+          {...fadeIn}
+          className="container mx-auto px-6 text-center z-10"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-8 text-4xl font-bold text-red-600"
+          >
+            CODANA
+          </motion.div>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
+            Building Tomorrows Software
+            <span className="text-red-600">.</span>
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 text-gray-300">
+            Your Vision. Our Expertise. Perfect Software Solutions.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-colors"
+            >
+              Start Your Project
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="border-2 border-white hover:bg-white hover:text-black px-8 py-4 rounded-full text-lg font-medium transition-colors"
+            >
+              Our Work
+            </motion.button>
+          </div>
+        </motion.div>
+      </motion.header>
+
+      {/* Featured Clients */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="py-16 bg-black/50 backdrop-blur-lg"
+      >
+        <div className="container mx-auto px-6">
+          <h2 className="text-2xl text-center text-gray-400 mb-8">Trusted by Industry Leaders</h2>
+          <div className="flex flex-wrap justify-center items-center gap-12">
+            {clients.map((client, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.1 }}
+                className="w-32 h-12 relative grayscale hover:grayscale-0 transition-all bg-white/10 rounded-lg flex items-center justify-center"
+              >
+                <span className="text-gray-400 font-semibold">{client.name}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Services Section */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="py-20 bg-neutral-900/50 backdrop-blur-lg"
+      >
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+            Our Services
+          </h2>
+          <p className="text-gray-400 text-center max-w-2xl mx-auto mb-12">
+            We deliver cutting-edge solutions tailored to your needs, ensuring your business stays ahead in the digital landscape.
+          </p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05, y: -10 }}
+                className="bg-gradient-to-br from-neutral-800 to-neutral-900 p-8 rounded-2xl hover:shadow-2xl hover:shadow-red-600/10 transition-all duration-300"
+              >
+                <div className="text-red-600 mb-4">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-4">{service.title}</h3>
+                <p className="text-gray-400 mb-4">{service.description}</p>
+                <motion.a
+                  href="#"
+                  whileHover={{ x: 5 }}
+                  className="text-red-600 hover:text-red-400 inline-flex items-center gap-2"
+                >
+                  Learn more
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </motion.a>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Process Section */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="py-20 bg-black relative overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+        <div className="container mx-auto px-6 relative">
+          <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
+            Our Process
+          </h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            {process.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-red-600 flex items-center justify-center text-2xl font-bold">
+                  {index + 1}
+                </div>
+                <h3 className="text-xl font-bold mb-4">{step.title}</h3>
+                <p className="text-gray-400">{step.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Stats Section with Gradient Cards */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="py-20 bg-neutral-900/50 backdrop-blur-lg"
+      >
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -10 }}
+                className="p-8 rounded-2xl bg-gradient-to-br from-red-600/10 to-neutral-800 border border-red-600/20"
+              >
+                <motion.h3 
+                  initial={{ scale: 0.5 }}
+                  whileInView={{ scale: 1 }}
+                  className="text-5xl font-bold text-red-600 mb-2"
+                >
+                  {stat.value}
+                </motion.h3>
+                <p className="text-gray-400">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* CTA Section */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="py-20 bg-black relative overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent" />
+        <div className="container mx-auto px-6 relative">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready to Transform Your Ideas into Reality?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              Lets create something extraordinary together.
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-red-600 hover:bg-red-700 text-white px-12 py-5 rounded-full text-lg font-medium transition-colors"
+            >
+              Schedule a Consultation
+            </motion.button>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
+
+const clients = [
+  { name: "TechCorp" },
+  { name: "InnoSys" },
+  { name: "DevPro" },
+  { name: "ByteLabs" },
+];
+
+const services = [
+  {
+    icon: <Code className="w-8 h-8" />,
+    title: "Custom Software Development",
+    description: "Tailored solutions that perfectly match your business requirements and goals."
+  },
+  {
+    icon: <Smartphone className="w-8 h-8" />,
+    title: "Mobile App Development",
+    description: "Native and cross-platform apps that deliver exceptional user experiences."
+  },
+  {
+    icon: <Palette className="w-8 h-8" />,
+    title: "UX & UI Design",
+    description: "User-centered design that drives engagement and business success."
+  }
+];
+
+const process = [
+  {
+    title: "Discovery",
+    description: "We analyze your needs and define the scope of your project."
+  },
+  {
+    title: "Design",
+    description: "Creating intuitive and beautiful interfaces that users love."
+  },
+  {
+    title: "Development",
+    description: "Building your solution with cutting-edge technologies."
+  },
+  {
+    title: "Delivery",
+    description: "Testing, deployment, and ongoing support for your success."
+  }
+];
+
+const stats = [
+  { value: "100+", label: "Successful Projects" },
+  { value: "95%", label: "Client Satisfaction" },
+  { value: "12+", label: "Years Experience" }
+];

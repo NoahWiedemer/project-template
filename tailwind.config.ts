@@ -13,6 +13,10 @@ export default {
         foreground: "var(--foreground)",
       },
     },
+    fontFamily: {
+      sans: ['var(--font-ubuntu)'],
+      mono: ['var(--font-ubuntu-mono)'],
+    },
   },
   plugins: [],
 } satisfies Config;
