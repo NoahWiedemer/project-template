@@ -6,6 +6,7 @@ Design:
 - The design should be responsive
 - Write a lot of code
 - Make it a truly amazing user experience
+- Use images from unsplash for mockdata
 
 Code:
 - Use tailwind for the design

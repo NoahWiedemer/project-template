@@ -1,0 +1,1 @@
+This is the idea/concept of my application. Please generate me a very long summary and explanation of the application and name every detail. Also extend the concept with ideas that make sense.

@@ -1,2 +1,1 @@
-Generate a sitemap and a numbered list with all pages of the application. Every page has to be described very precisely. Also create a Tree structure of all these pages for the project in a next.js /app structure.
-Also Explain the navigation of the application and include it as components in the tree structure.
+Create all files and folders of this tree structure and make sure that if a Header, Footer or Sidebar exist, implement them into the layout.tsx
