@@ -54,6 +54,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.button
+              onClick={() => window.location.href = '/backend'}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-colors"
@@ -61,6 +62,7 @@ export default function Home() {
               Start Your Project
             </motion.button>
             <motion.button
+              onClick={() => window.location.href = '/backend'}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border-2 border-white hover:bg-white hover:text-black px-8 py-4 rounded-full text-lg font-medium transition-colors"
