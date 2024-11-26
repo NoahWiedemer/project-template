@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import Footer from "@/components/Footer";
 import { Code, Smartphone, Palette } from 'lucide-react';
 
 export default function Home() {
@@ -13,7 +12,6 @@ export default function Home() {
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -26,13 +24,11 @@ export default function Home() {
       {/* Hero Section with Parallax */}
       <motion.header 
         ref={targetRef}
-        style={{ opacity, scale }}
+        style={{ opacity }}
         className="relative h-screen flex items-center justify-center overflow-hidden"
       >
         <div className="absolute inset-0">
-          <motion.div 
-            animate={{ scale: 1.2 }}
-            transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
+          <div 
             className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80')] bg-cover bg-center opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
@@ -50,11 +46,11 @@ export default function Home() {
             CODANA
           </motion.div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
-            Building Tomorrows Software
+            AI Solutions for Tomorrow
             <span className="text-red-600">.</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-300">
-            Your Vision. Our Expertise. Perfect Software Solutions.
+            Transforming Businesses Through Advanced AI Technologies
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.button
@@ -227,59 +223,56 @@ export default function Home() {
           </div>
         </div>
       </motion.section>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }
 
 const clients = [
-  { name: "TechCorp" },
-  { name: "InnoSys" },
-  { name: "DevPro" },
-  { name: "ByteLabs" },
+  { name: "AITech" },
+  { name: "DataCorp" },
+  { name: "MLSystems" },
+  { name: "NeuralLabs" },
 ];
 
 const services = [
   {
     icon: <Code className="w-8 h-8" />,
-    title: "Custom Software Development",
-    description: "Tailored solutions that perfectly match your business requirements and goals."
+    title: "AI Model Development",
+    description: "Custom AI solutions from machine learning to deep neural networks, tailored to your specific needs."
   },
   {
     icon: <Smartphone className="w-8 h-8" />,
-    title: "Mobile App Development",
-    description: "Native and cross-platform apps that deliver exceptional user experiences."
+    title: "AI Integration",
+    description: "Seamlessly integrate AI capabilities into your existing systems and applications."
   },
   {
     icon: <Palette className="w-8 h-8" />,
-    title: "UX & UI Design",
-    description: "User-centered design that drives engagement and business success."
+    title: "AI Consulting",
+    description: "Strategic guidance on implementing AI solutions to transform your business processes."
   }
 ];
 
 const process = [
   {
-    title: "Discovery",
-    description: "We analyze your needs and define the scope of your project."
+    title: "Analysis",
+    description: "We evaluate your data and AI requirements to define the optimal approach."
   },
   {
-    title: "Design",
-    description: "Creating intuitive and beautiful interfaces that users love."
+    title: "Model Design",
+    description: "Architecting custom AI models tailored to your specific use case."
   },
   {
-    title: "Development",
-    description: "Building your solution with cutting-edge technologies."
+    title: "Training & Testing",
+    description: "Rigorous model training and validation using your data."
   },
   {
-    title: "Delivery",
-    description: "Testing, deployment, and ongoing support for your success."
+    title: "Deployment & Scaling",
+    description: "Implementing and scaling your AI solution with ongoing optimization."
   }
 ];
 
 const stats = [
-  { value: "100+", label: "Successful Projects" },
-  { value: "95%", label: "Client Satisfaction" },
-  { value: "12+", label: "Years Experience" }
+  { value: "50+", label: "AI Models Deployed" },
+  { value: "95%", label: "Model Accuracy" },
+  { value: "8+", label: "Years in AI" }
 ];

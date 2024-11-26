@@ -1,10 +1,13 @@
+Design:
 - Make it visually appealing
-- Use framer motion to animate the components
-- Use the styling of netflix (also red and black colors)
 - Emelents should have nice rounded borders
 - Make the design slick and modern
 - The user should have nice feedback when interacting with elements
 - The design should be responsive
 - Write a lot of code
-- Make sure all components look good in light and darkmode
+- Make it a truly amazing user experience
+
+Code:
 - Use tailwind for the design
+- Use react-icons as icon library
+- Use framer motion to animate the components

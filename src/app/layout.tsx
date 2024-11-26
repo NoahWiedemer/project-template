@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -22,7 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${ubuntu.className} antialiased`}>
-        <Header />
         {children}
       </body>
     </html>
